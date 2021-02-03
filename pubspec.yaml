@@ -1,0 +1,33 @@
+name: eat_os_interview
+description: eatOS interview task, supporting google maps and news plus weather APIs consumption.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.0
+  get_it: ^4.0.2
+  flutter_bloc: ^6.1.0
+  equatable: ^1.2.5
+  formz: ^0.3.1
+  keyboard_actions: ^3.3.1+1
+  google_maps_flutter: ^1.1.1
+  geolocator: ^5.3.1
+  dio: ^3.0.4
+  shared_preferences: ^0.5.7+3
+  http: 0.12.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
