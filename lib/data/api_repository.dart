@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:eat_os_interview/models/weather.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -9,7 +10,7 @@ class ApiRepo {
 
   Future<List<LatLng>> getSteps({Map<String, dynamic> parameters}) async {
     Response response = await client.get(
-      'https://maps.googleapis.com/maps/api/directions/json?',
+      'https://maps.googleapis.com/maps/api/directions/json',
       queryParameters: parameters,
     );
 
@@ -17,10 +18,18 @@ class ApiRepo {
 
     for (Map<String, dynamic> s in response.data["routes"][0]["legs"][0]
         ["steps"]) {
-      print('s: ${s}');
       steps.add(LatLng(s['end_location']['lat'], s['end_location']['lng']));
     }
 
     return steps;
+  }
+
+  Future<WeatherInfo> getWeather({Map<String, dynamic> parameters}) async {
+    Response response = await client.get(
+      'https://api.openweathermap.org/data/2.5/weather',
+      queryParameters: parameters,
+    );
+
+    return WeatherInfo.fromJson(response.data);
   }
 }

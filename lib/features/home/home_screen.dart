@@ -126,8 +126,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         Card(
                           clipBehavior: Clip.hardEdge,
                           child: InkWell(
-                            onTap: () =>
-                                sl<NavigationService>().navigateTo(weather),
+                            onTap: () => sl<NavigationService>().navigateTo(
+                              weather,
+                              arguments: [_currentPosition],
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Icon(

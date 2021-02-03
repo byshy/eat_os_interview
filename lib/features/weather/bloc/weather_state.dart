@@ -1,10 +1,22 @@
 part of 'weather_bloc.dart';
 
-abstract class WeatherState extends Equatable {
-  const WeatherState();
-}
+class WeatherState extends Equatable {
+  final WeatherInfo info;
 
-class WeatherInitial extends WeatherState {
+  const WeatherState({
+    this.info,
+  });
+
+  WeatherState copyWith({
+    WeatherInfo info,
+  }) {
+    return WeatherState(
+      info: info ?? this.info,
+    );
+  }
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [
+        info,
+      ];
 }

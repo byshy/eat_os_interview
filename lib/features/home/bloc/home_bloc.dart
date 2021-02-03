@@ -117,12 +117,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Position currentPosition,
     Position destinationPosition,
   }) async {
-    List<LatLng> _steps = await sl<ApiRepo>().getSteps(parameters: {
-      'origin': '${currentPosition.latitude},${currentPosition.longitude}',
-      'destination':
-          '${destinationPosition.latitude},${destinationPosition.longitude}',
-      'key': 'AIzaSyABm7VMoYfjmq1JuddufJMDASvgjj-YBi0',
-    });
+    List<LatLng> _steps = await sl<ApiRepo>().getSteps(
+      parameters: {
+        'origin': '${currentPosition.latitude},${currentPosition.longitude}',
+        'destination':
+            '${destinationPosition.latitude},${destinationPosition.longitude}',
+        'key': 'AIzaSyABm7VMoYfjmq1JuddufJMDASvgjj-YBi0',
+      },
+    );
 
     _steps.insert(
         0,

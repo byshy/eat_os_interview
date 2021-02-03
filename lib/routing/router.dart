@@ -45,7 +45,9 @@ class Router {
         return MaterialPageRoute(
           settings: RouteSettings(name: weather),
           builder: (_) => BlocProvider.value(
-            child: WeatherScreen(),
+            child: WeatherScreen(
+              position: (settings.arguments as List)[0],
+            ),
             value: sl<WeatherBloc>(),
           ),
         );
