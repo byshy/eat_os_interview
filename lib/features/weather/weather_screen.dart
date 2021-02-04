@@ -16,6 +16,8 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  static const _KELVIN_TEMP = 273.15;
+
   @override
   void initState() {
     super.initState();
@@ -72,8 +74,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ],
                 ),
                 SizedBox(height: 30),
+                /// temperature is returned from the API in Kelvin, hence
+                /// subtracting _KELVIN_TEMP.
                 Text(
-                  '${((state.info?.main?.temp ?? 0) - 273.15).toStringAsPrecision(2)} C',
+                  '${((state.info?.main?.temp ?? 0) - _KELVIN_TEMP).toStringAsPrecision(2)} C',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 50,
