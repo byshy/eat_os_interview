@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:eat_os_interview/models/popular_places.dart';
 import 'package:eat_os_interview/models/weather.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -31,5 +32,15 @@ class ApiRepo {
     );
 
     return WeatherInfo.fromJson(response.data);
+  }
+
+  Future<PopularPlaces> getPopularPlaces(
+      {Map<String, dynamic> parameters}) async {
+    Response response = await client.get(
+      'https://maps.googleapis.com/maps/api/place/search/json',
+      queryParameters: parameters,
+    );
+
+    return PopularPlaces.fromJson(response.data);
   }
 }

@@ -22,6 +22,14 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        appBarTheme: AppBarTheme(
+          color: Colors.white,
+          elevation: 0,
+          brightness: Brightness.light,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+        ),
       ),
       navigatorKey: sl<NavigationService>().navigatorKey,
       initialRoute: home,

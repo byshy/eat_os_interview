@@ -37,7 +37,9 @@ class Router {
         return MaterialPageRoute(
           settings: RouteSettings(name: placesOfInterest),
           builder: (_) => BlocProvider.value(
-            child: POIScreen(),
+            child: POIScreen(
+              position: (settings.arguments as List)[0],
+            ),
             value: sl<POIBloc>(),
           ),
         );

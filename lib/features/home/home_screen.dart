@@ -90,8 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         Card(
                           clipBehavior: Clip.hardEdge,
                           child: InkWell(
-                            onTap: () => sl<NavigationService>()
-                                .navigateTo(placesOfInterest),
+                            onTap: () => sl<NavigationService>().navigateTo(
+                              placesOfInterest,
+                              arguments: [_currentPosition],
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Icon(

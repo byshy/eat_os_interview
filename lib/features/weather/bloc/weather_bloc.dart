@@ -14,15 +14,24 @@ part 'weather_state.dart';
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc() : super(const WeatherState());
 
+  WeatherInfo info;
+
   @override
   Stream<WeatherState> mapEventToState(
     WeatherEvent event,
   ) async* {
     if (event is GetWeather) {
-      WeatherInfo info = await getWeather(currentPosition: event.position);
+      if (event.refresh || info == null) {
+        yield state.copyWith(
+          loading: true,
+        );
+
+        info = await getWeather(currentPosition: event.position);
+      }
 
       yield state.copyWith(
         info: info,
+        loading: false,
       );
     }
   }

@@ -6,9 +6,16 @@ abstract class WeatherEvent extends Equatable {
 
 class GetWeather extends WeatherEvent {
   final Position position;
+  final bool refresh;
 
-  GetWeather({this.position});
+  GetWeather({
+    this.position,
+    this.refresh = false,
+  });
 
   @override
-  List<Object> get props => [position];
+  List<Object> get props => [
+        position,
+        refresh,
+      ];
 }
