@@ -29,6 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   double _milesSelected = 5;
 
+  String _countryCode;
+
   @override
   void initState() {
     super.initState();
@@ -64,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {
               _markers[state.marker.markerId] = state.marker;
               _currentPosition = state.currentLocation;
+              _countryCode = state.currentLocationCode;
             });
           }
         },
@@ -148,8 +151,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         Card(
                           clipBehavior: Clip.hardEdge,
                           child: InkWell(
-                            onTap: () =>
-                                sl<NavigationService>().navigateTo(news),
+                            onTap: () => sl<NavigationService>().navigateTo(
+                              news,
+                              arguments: [_countryCode],
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Icon(

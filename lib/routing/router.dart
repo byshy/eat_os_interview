@@ -29,7 +29,9 @@ class Router {
         return MaterialPageRoute(
           settings: RouteSettings(name: news),
           builder: (_) => BlocProvider.value(
-            child: NewsScreen(),
+            child: NewsScreen(
+              countryCode: (settings.arguments as List)[0],
+            ),
             value: sl<NewsBloc>(),
           ),
         );

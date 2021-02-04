@@ -6,6 +6,7 @@ class HomeState extends Equatable {
   final Position currentLocation;
   final Position destinationLocation;
   final String currentLocationName;
+  final String currentLocationCode;
 
   const HomeState({
     this.marker,
@@ -13,6 +14,7 @@ class HomeState extends Equatable {
     this.currentLocationName,
     this.currentLocation,
     this.destinationLocation,
+    this.currentLocationCode,
   });
 
   HomeState copyWith({
@@ -21,6 +23,7 @@ class HomeState extends Equatable {
     Position currentLocation,
     String currentLocationName,
     Position destinationLocation,
+    String currentLocationCode,
   }) {
     return HomeState(
       marker: marker ?? this.marker,
@@ -28,6 +31,7 @@ class HomeState extends Equatable {
       currentLocation: currentLocation ?? this.currentLocation,
       currentLocationName: currentLocationName ?? this.currentLocationName,
       destinationLocation: destinationLocation ?? this.destinationLocation,
+      currentLocationCode: currentLocationCode ?? this.currentLocationCode,
     );
   }
 
@@ -38,5 +42,6 @@ class HomeState extends Equatable {
         currentLocation,
         currentLocationName,
         destinationLocation,
+        currentLocationCode,
       ];
 }

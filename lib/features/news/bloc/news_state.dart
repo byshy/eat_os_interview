@@ -1,10 +1,27 @@
 part of 'news_bloc.dart';
 
-abstract class NewsState extends Equatable {
-  const NewsState();
-}
+class NewsState extends Equatable {
+  final News news;
+  final bool loading;
 
-class NewsInitial extends NewsState {
+  const NewsState({
+    this.news,
+    this.loading = false,
+  });
+
+  NewsState copyWith({
+    News places,
+    bool loading,
+  }) {
+    return NewsState(
+      news: places ?? this.news,
+      loading: loading ?? this.loading,
+    );
+  }
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [
+        news,
+        loading,
+      ];
 }

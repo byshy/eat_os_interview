@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:eat_os_interview/models/news.dart';
 import 'package:eat_os_interview/models/popular_places.dart';
 import 'package:eat_os_interview/models/weather.dart';
 import 'package:flutter/foundation.dart';
@@ -42,5 +43,14 @@ class ApiRepo {
     );
 
     return PopularPlaces.fromJson(response.data);
+  }
+
+  Future<News> getNews({Map<String, dynamic> parameters}) async {
+    Response response = await client.get(
+      'http://newsapi.org/v2/top-headlines',
+      queryParameters: parameters,
+    );
+
+    return News.fromJson(response.data);
   }
 }

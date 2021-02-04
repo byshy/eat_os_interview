@@ -36,12 +36,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ),
       );
 
-      String addressName = await _getAddressFromLatLng(position);
+      String fullAddress = await _getAddressFromLatLng(position);
+
+      String addressName = fullAddress.split(':')[0];
+      String addressCode = fullAddress.split(':')[1];
 
       yield state.copyWith(
         marker: marker,
         currentLocation: position,
         currentLocationName: addressName,
+        currentLocationCode: addressCode,
       );
     } else if (event is GenerateLocation) {
       LatLng randomLocation = getRandomLocation(
@@ -87,7 +91,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       List<Placemark> p = await geoLocator.placemarkFromCoordinates(
           position.latitude, position.longitude);
       Placemark place = p[0];
-      return '${place.locality}, ${place.postalCode}, ${place.country}';
+      return '${place.locality}, ${place.postalCode}, ${place.country}:${place.isoCountryCode}';
     } catch (e) {
       print(e);
       return 'Address Unavailable';
