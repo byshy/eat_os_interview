@@ -238,7 +238,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ? () => sl<AuthBloc>().add(FormSubmitted())
                               : null,
                           child: state.status.isSubmissionInProgress
-                              ? LoadingIndicator()
+                              ? LoadingIndicator(color: Colors.white)
                               : Text(
                                   'LOGIN',
                                   style: TextStyle(
@@ -246,6 +246,39 @@ class _LoginScreenState extends State<LoginScreen> {
                                     fontSize: 14,
                                   ),
                                 ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.black,
+                                  indent: 10,
+                                  endIndent: 10,
+                                ),
+                              ),
+                              Text('OR'),
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.black,
+                                  indent: 10,
+                                  endIndent: 10,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        CustomRaisedButton(
+                          onTap: () => sl<AuthBloc>().add(FacebookLoginEvent()),
+                          child: Text(
+                            'LOGIN WITH FACEBOOK',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                            ),
+                          ),
+                          color: Color(0xFF4267B2),
                         ),
                       ],
                     );

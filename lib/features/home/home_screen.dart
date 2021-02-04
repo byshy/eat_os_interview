@@ -87,7 +87,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   child: SafeArea(
-                    minimum: const EdgeInsets.symmetric(horizontal: 10),
+                    minimum: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 32,
+                    ),
                     child: Row(
                       children: [
                         Card(
@@ -122,10 +125,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Expanded(
-                          child: Text(
-                            state.currentLocationName ?? '',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              state.currentLocationName ?? '',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                         Card(

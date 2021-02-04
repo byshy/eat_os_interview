@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:eat_os_interview/models/models.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:formz/formz.dart';
 import 'package:meta/meta.dart';
 
@@ -51,6 +54,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await Future<void>.delayed(const Duration(seconds: 1));
         yield state.copyWith(status: FormzStatus.submissionSuccess);
       }
+    } else if (event is FacebookLoginEvent) {
+      await loginWithFacebook();
+
+      yield state.copyWith(status: FormzStatus.submissionSuccess);
     }
+  }
+
+  final fb = FacebookLogin();
+
+  Future<void> loginWithFacebook() async {
+    final res = await fb.logIn(['email']);
+
+    fb.loginBehavior = FacebookLoginBehavior.webViewOnly;
+
+    switch (res.status) {
+      case FacebookLoginStatus.loggedIn:
+        final token = res.accessToken.token;
+        final graphResponse = await Dio().get(
+            'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=${token}');
+        final profile = json.decode(graphResponse.data);
+
+        print('profile: $profile');
+
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        // User cancel log in
+        break;
+      case FacebookLoginStatus.error:
+        // Log in failed
+        print('Error while log in: ${res.errorMessage}');
+        break;
+    }
+
+    return;
   }
 }

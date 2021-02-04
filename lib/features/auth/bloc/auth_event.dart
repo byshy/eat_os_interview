@@ -30,3 +30,5 @@ class PasswordChanged extends AuthEvent {
 class PasswordUnfocused extends AuthEvent {}
 
 class FormSubmitted extends AuthEvent {}
+
+class FacebookLoginEvent extends AuthEvent {}

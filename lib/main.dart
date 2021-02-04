@@ -32,8 +32,7 @@ class App extends StatelessWidget {
         ),
       ),
       navigatorKey: sl<NavigationService>().navigatorKey,
-      initialRoute: home,
-      // initialRoute: login,
+      initialRoute: login,
       onGenerateRoute: router.Router.generateRoute,
     );
   }
